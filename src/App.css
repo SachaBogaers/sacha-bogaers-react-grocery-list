@@ -36,3 +36,43 @@
     transform: rotate(360deg);
   }
 }
+
+.Container {
+  display: flex;
+}
+
+
+.list {
+  list-style: none;
+}
+
+.list li {
+  margin: 5px;
+  padding: 5px;
+
+}
+
+.GroceryList {
+  width: 50%;
+
+}
+
+.GroceryList li:nth-child(even) {
+  background-color: #7FBEEB;
+}
+
+.GroceryList li:nth-child(odd) {
+  background-color: #56CBF9;
+}
+
+.ShoppingCart {
+  width: 50%;
+}
+
+.ShoppingCart li:nth-child(even) {
+  background-color: #AFBED1;
+}
+
+.ShoppingCart li:nth-child(odd) {
+  background-color: #EAC5D8;
+}

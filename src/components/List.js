@@ -1,17 +1,21 @@
 import React from 'react'
 import ListItem from './ListItem'
 
-function List() {
+function List(props) {
+	console.log("props", props)
 	return (
-		<ul>
-			<ListItem
-				title="Curry paste" />
-			<ListItem
-				title="Broccoli" />
-			<ListItem
-				title="Coconut milk" />
+		<ul className="list">
+			{props.list.map(item => (
+				<ListItem
+					key={item.id}
+					props={item}
+					onClick={props.onClick}
+					value={item.title}
+				/>))}
 		</ul>
 	)
 }
+
+
 
 export default List
