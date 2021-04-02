@@ -13,6 +13,7 @@ function GroceryList(props) {
 			<List
 				list={props.list}
 				onClick={props.onClick}
+				isShoppingCart={props.isShoppingCart}
 
 			/>
 		</div>

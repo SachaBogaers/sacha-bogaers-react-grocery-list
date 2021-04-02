@@ -5,11 +5,12 @@ function ShoppingCart(props) {
 	return (
 		<div className="ShoppingCart">
 			<h1>Shopping Cart</h1>
-			<List
-				list={props.list} />
 			<button
 				onClick={props.emptyCart}
 			>Empty Cart</button>
+			<List
+				list={props.list}
+				isShoppingCart={props.isShoppingCart} />
 		</div>
 	)
 }

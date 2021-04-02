@@ -10,6 +10,7 @@ function List(props) {
 					props={item}
 					onClick={props.onClick}
 					value={item.title}
+					isShoppingCart={props.isShoppingCart}
 				/>))}
 		</ul>
 	)

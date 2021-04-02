@@ -48,15 +48,38 @@ class Container extends React.Component {
 
 
 	handleClickGroceryItem(event) {
+		const itemTitle = event.target.title
 		this.setState(prevState => {
+			console.log("prevstate", prevState)
 			const oldGroceryItems = [...prevState.groceryItems]
-			const item = oldGroceryItems.filter(item => {
-				return item.title === event.target.title
-			})
+			const clickedItem = oldGroceryItems.filter(item => {
+				return item.title === itemTitle
+			})[0]
+			const itemId = clickedItem.id
+			const newShoppingItem = {
+				id: itemId,
+				title: itemTitle,
+				amount: 1
+			}
 			const oldShoppingList = [...prevState.shoppingListItems]
-			const newShoppingList = oldShoppingList.concat(item)
-			return {
-				shoppingListItems: newShoppingList
+			const match = oldShoppingList.find(item => item.id === newShoppingItem.id)
+			// Check if item is already in shopping cart, if so, change amount of that item
+			if (match) {
+				const newAmount = match.amount + 1
+				console.log("Match amount", match.amount, match)
+				newShoppingItem.amount = newAmount
+				const newShoppingList = oldShoppingList.map(item =>
+					item.id === match.id ? { ...item, amount: newAmount } : item)
+				console.log("New", newShoppingList)
+				return {
+					shoppingListItems: newShoppingList
+				}
+				// If not already in cart, add item to cart
+			} else {
+				const newShoppingList = oldShoppingList.concat(newShoppingItem)
+				return {
+					shoppingListItems: newShoppingList
+				}
 			}
 		})
 	}
@@ -76,10 +99,13 @@ class Container extends React.Component {
 					onClick={this.handleClickGroceryItem}
 					handleInputChange={this.handleInputChange}
 					handleSubmitGroceryItem={this.handleSubmitGroceryItem}
+					isShoppingCart={false}
 				/>
 				<ShoppingCart
 					list={this.state.shoppingListItems}
-					emptyCart={this.emptyCart} />
+					emptyCart={this.emptyCart}
+					isShoppingCart={true}
+				/>
 			</div>
 		);
 	}
